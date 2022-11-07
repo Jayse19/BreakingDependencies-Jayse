@@ -6,6 +6,15 @@ namespace TestProject1
 {
     public class Tests
     {
+        public class TestDependency: IForm
+        {
+            public void Show(string message)
+            {
+
+            }
+
+        }
+
         [SetUp]
         public void Setup()
         {
@@ -36,6 +45,11 @@ namespace TestProject1
         [Test]
         public void NumBalanceError()
         {
+            var form = new Form1();
+            var formDepenency = new TestDependency();
+
+            form.btnCalculate_Click(null, null);
+
             Assert.That(() => form.Message == "Must be between 10k and 1MM");
         }
     }
