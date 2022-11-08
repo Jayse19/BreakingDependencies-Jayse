@@ -3,17 +3,11 @@ using System.Runtime.InteropServices;
 
 namespace WinFormsApp1
 {
-    public partial class Form1 : Form
-    {
-        public Form1()
-        {
-            InitializeComponent();
-        }
-
         public interface IForm
         {
             void ShowMessageBox(string message);
         }
+
 
         public class ShowMessage: IForm
         {
@@ -22,26 +16,48 @@ namespace WinFormsApp1
                 MessageBox.Show(message);
             }
         }
+    public partial class Form1 : Form
+    {
+        public string Message { get; set; }
+
+        ShowMessage showMessage;
+        public Form1()
+        {
+            InitializeComponent();
+            Message = "";
+            showMessage = new ShowMessage();
+
+        }
+        public Form1(string message)
+        {
+            InitializeComponent();
+            string Message = message;
+        }
 
         public void btnCalculate_Click(object sender, EventArgs e)
         {
-            IForm form = (IForm)sender;
+            
             if (txtName.Text.Length == 0)
             {
-                form.Message("You have to enter a name");
-                MessageBox.Show("You have to enter a name");
+                Message = "You have to enter a name";
+                showMessage.ShowMessageBox(Message);
+                //MessageBox.Show("You have to enter a name");
                 return;
             }
 
             if (numBalance.Value < 10_000 || numBalance.Value > 1_000_000)
             {
-                MessageBox.Show("Must be between 10k and 1MM");
+                Message = "Must be bewtween 10k and 1MM";
+                showMessage.ShowMessageBox(Message);
+                //MessageBox.Show("Must be between 10k and 1MM");
                 return;
             }
 
             if (File.Exists("authkey.txt") is false)
             {
-                MessageBox.Show("Missing authorization key");
+                Message = "Missing authorization key";
+                showMessage.ShowMessageBox(Message);
+                //MessageBox.Show("Missing authorization key");
                 return;
             }
 
