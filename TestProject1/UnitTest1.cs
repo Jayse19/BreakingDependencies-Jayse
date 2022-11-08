@@ -42,7 +42,7 @@ namespace TestProject1
         public void CountButtonClick()
         {
             var form = new Form1();
-            var formDepenency = new TestDependency();
+            //var formDepenency = new TestDependency();
 
             form.btnCalculate_Click(null, null);
 

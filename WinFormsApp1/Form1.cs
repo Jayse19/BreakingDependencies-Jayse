@@ -47,7 +47,7 @@ namespace WinFormsApp1
 
             if (numBalance.Value < 10_000 || numBalance.Value > 1_000_000)
             {
-                Message = "Must be bewtween 10k and 1MM";
+                Message = "Must be between 10k and 1MM";
                 showMessage.ShowMessageBox(Message);
                 //MessageBox.Show("Must be between 10k and 1MM");
                 return;
